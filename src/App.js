@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {connect} from 'react-redux';
+import TodoList from './conponents/TodoList'
+import AddTodoForm from './conponents/AddTodoForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = ({todos}) =>{
+  return(
+     <div>
+      <h1>Todo App</h1>
+      <AddTodoForm/>
+      <TodoList todos = {todos}/>
+     </div>
   );
-}
+};
 
-export default App;
+const mapStateToProps = (state) => {
+  return{
+    todos: state.todos
+  }
+};
+
+export default connect(mapStateToProps(App));
